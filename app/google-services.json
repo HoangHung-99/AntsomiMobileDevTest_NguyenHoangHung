@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "434851005661",
+    "project_id": "antsomitest-c0f17",
+    "storage_bucket": "antsomitest-c0f17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434851005661:android:529bd7d05e8cb55b414734",
+        "android_client_info": {
+          "package_name": "com.example.antsomitest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434851005661-g17gmcb5dtnk9usk9esuhsp6hhedbdrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1k0J90U9MC1zvPq49QMoPBWMdQJ-dUg8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434851005661-g17gmcb5dtnk9usk9esuhsp6hhedbdrj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
