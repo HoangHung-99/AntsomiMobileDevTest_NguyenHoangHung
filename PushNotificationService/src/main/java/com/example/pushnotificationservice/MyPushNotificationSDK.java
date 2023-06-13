@@ -12,7 +12,6 @@ public class MyPushNotificationSDK {
     private static MyCallback callback;
 
     public static void setPushNotificationCallback(MyCallback callback) {
-//        MyPushNotificationSDK.callback = callback;
         MyBroadcastReceiver.setBroadcastCallback(callback);
     }
 
@@ -36,13 +35,10 @@ public class MyPushNotificationSDK {
     public static void handleNotification(Context context, Intent intent) {
         MyFirebaseMessagingService service = new MyFirebaseMessagingService();
         RemoteMessage remoteMessage = intent.getParcelableExtra("data");
-        System.out.println("Test" + callback);
-        Log.d(TAG, "callback: " + callback);
+        System.out.println("Test intent" + remoteMessage);
+        Log.d(TAG, "callback intent: " + remoteMessage);
         if (remoteMessage != null) {
             service.onMessageReceived(remoteMessage);
-            if (callback != null) {
-//                service.setCallback(callback);
-            }
         }
     }
 }

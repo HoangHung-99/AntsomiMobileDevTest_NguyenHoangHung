@@ -2,6 +2,8 @@ package com.example.antsomitest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,8 @@ import android.widget.Toast;
 
 import com.example.pushnotificationservice.MyCallback;
 import com.example.pushnotificationservice.MyPushNotificationSDK;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     MyPushNotificationSDK instance = new MyPushNotificationSDK();
@@ -28,8 +32,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             MyPushNotificationSDK.handleNotification(getApplicationContext(), intent);
+
         }
+
     }
+
+
+
 
     @Override
     protected void onNewIntent(Intent intent) {

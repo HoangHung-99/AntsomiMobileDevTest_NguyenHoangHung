@@ -1,5 +1,6 @@
 package com.example.pushnotificationservice;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -16,6 +17,8 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMessagingService";
     private static MyCallback callback;
@@ -29,7 +32,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-            // Handle data payload here
+            Map<String, String> dataPayload = remoteMessage.getData();
+            Log.d(TAG, "dataPayload: " + dataPayload);
+            String title = dataPayload.get("title");
+            String body = dataPayload.get("body");
+            Log.d(TAG, "Message Notification Payload Title: " + title);
+            Log.d(TAG, "Message Notification Payload Body: " + body);
+            sendNotification(body);
+
         }
 
         if (remoteMessage.getNotification() != null) {
@@ -37,8 +47,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
             Log.d(TAG, "Message Notification Body: " + callback);
             // Handle notification payload here
+            Log.d(TAG, "remoteMessage.getNotification().getBody(): " + remoteMessage.getNotification());
+            sendNotification(remoteMessage.getNotification().getBody());
         }
-        sendNotification(remoteMessage.getNotification().getBody());
+
     }
 
     private void sendNotification(String messageBody) {
@@ -47,7 +59,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         String channelId = "fcm_default_channel";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder =
+        @SuppressLint("NotificationTrampoline") NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.ic_stat_notification)
                         .setContentTitle("FCM Message")
