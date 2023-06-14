@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -33,14 +34,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     }
     @Override
     public void onReceive(Context context, Intent intent) {
-        boolean foreground = isAppOnForeground(context.getApplicationContext());
-        if (!foreground) {
-            Intent i = new Intent();
-            i.setClassName("com.example.antsomitest", "com.example.antsomitest.MainActivity");
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
-        }
-        Log.d(TAG, "TestCallBack: " + callback);
+        Log.d(TAG, "TestCallBack: " + intent);
+
         if (callback != null) {
             callback.onCallback();
         }
